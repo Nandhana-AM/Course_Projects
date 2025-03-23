@@ -1,0 +1,7 @@
+Collecting cython
+  Obtaining dependency information for cython from https://files.pythonhosted.org/packages/02/4e/5ac0b5b9a239cd3fdae187dda8ff06b0b812f671e2501bf253712278f0ac/Cython-3.0.12-cp311-cp311-win_amd64.whl.metadata
+  Downloading Cython-3.0.12-cp311-cp311-win_amd64.whl.metadata (3.6 kB)
+Downloading Cython-3.0.12-cp311-cp311-win_amd64.whl (2.8 MB)
+   ---------------------------------------- 2.8/2.8 MB 3.3 MB/s eta 0:00:00
+Installing collected packages: cython
+Successfully installed cython-3.0.12

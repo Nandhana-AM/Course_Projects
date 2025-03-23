@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summarization App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .options {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .option {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            cursor: pointer;
+            width: 200px;
+        }
+        .option:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Summarization App</h1>
+    <div class="options">
+        <div class="option" onclick="window.location.href='/video'">
+            <h2>Video Summarization</h2>
+        </div>
+        <div class="option" onclick="window.location.href='/text'">
+            <h2>Text Summarization</h2>
+        </div>
+        <div class="option" onclick="window.location.href='/image'">
+            <h2>Image Summarization</h2>
+        </div>
+    </div>
+</body>
+</html>

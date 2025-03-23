@@ -1,0 +1,261 @@
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with watchdog (windowsapi)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 550-494-242
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with watchdog (windowsapi)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 550-494-242
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with watchdog (windowsapi)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 550-494-242
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:39] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:39] "[33mGET /static/style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:39] "GET /static/JS/app.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:39] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:48] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:48] "[33mGET /static/style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:49] "GET /static/JS/app.js HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:35:49] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:37:07] "[33mGET /static/style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:37:22] "POST /summarize HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:40:41] "POST /summarize HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [25/Feb/2025 23:41:37] "POST /summarize HTTP/1.1" 200 -
+INFO:werkzeug:[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+INFO:werkzeug:[33mPress CTRL+C to quit[0m
+INFO:werkzeug: * Restarting with watchdog (windowsapi)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 550-494-242
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:20:47] "GET / HTTP/1.1" 200 -
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:20:47] "[33mGET /static/style.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:20:47] "GET /static/JS/app.js HTTP/1.1" 200 -
+INFO:werkzeug: * Detected change in 'C:\\Users\\nandhana\\anaconda3\\Lib\\site-packages\\whisper\\transcribe.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\nandhana\\anaconda3\\Lib\\site-packages\\torch\\utils\\_contextlib.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\nandhana\\anaconda3\\Lib\\site-packages\\whisper\\decoding.py', reloading
+INFO:werkzeug: * Detected change in 'C:\\Users\\nandhana\\anaconda3\\Lib\\site-packages\\torch\\nn\\modules\\module.py', reloading
+ERROR:root:Error: Failed to transcribe audio: Linear(in_features=512, out_features=512, bias=True)
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 100, in transcribe_audio
+    result = whisper_model.transcribe(audio_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 279, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 195, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 169, in forward
+    x = x + self.cross_attn(self.cross_attn_ln(x), xa, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 109, in forward
+    v = kv_cache[self.value]
+        ~~~~~~~~^^^^^^^^^^^^
+KeyError: Linear(in_features=512, out_features=512, bias=True)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 50, in summarize
+    text = transcribe_audio(audio_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 105, in transcribe_audio
+    raise Exception(f"Failed to transcribe audio: {e}")
+Exception: Failed to transcribe audio: Linear(in_features=512, out_features=512, bias=True)
+
+INFO:werkzeug: * Detected change in 'C:\\Users\\nandhana\\anaconda3\\Lib\\site-packages\\whisper\\model.py', reloading
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:21:39] "[35m[1mPOST /summarize HTTP/1.1[0m" 500 -
+ERROR:root:Error: Failed to transcribe audio: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 100, in transcribe_audio
+    result = whisper_model.transcribe(audio_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 279, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 195, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 167, in forward
+    x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 111, in forward
+    wv, qk = self.qkv_attention(q, k, v, mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 124, in qkv_attention
+    a = scaled_dot_product_attention(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 50, in summarize
+    text = transcribe_audio(audio_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 105, in transcribe_audio
+    raise Exception(f"Failed to transcribe audio: {e}")
+Exception: Failed to transcribe audio: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+
+ERROR:root:Error: Failed to transcribe audio: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 100, in transcribe_audio
+    result = whisper_model.transcribe(audio_path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 279, in transcribe
+    result: DecodingResult = decode_with_fallback(mel_segment)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\transcribe.py", line 195, in decode_with_fallback
+    decode_result = model.decode(segment, options)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 824, in decode
+    result = DecodingTask(model, options).run(mel)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 737, in run
+    tokens, sum_logprobs, no_speech_probs = self._main_loop(audio_features, tokens)
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 687, in _main_loop
+    logits = self.inference.logits(tokens, audio_features)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\decoding.py", line 163, in logits
+    return self.model.decoder(tokens, audio_features, kv_cache=self.kv_cache)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 242, in forward
+    x = block(x, xa, mask=self.mask, kv_cache=kv_cache)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 167, in forward
+    x = x + self.attn(self.attn_ln(x), mask=mask, kv_cache=kv_cache)[0]
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\torch\nn\modules\module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 111, in forward
+    wv, qk = self.qkv_attention(q, k, v, mask)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\anaconda3\Lib\site-packages\whisper\model.py", line 124, in qkv_attention
+    a = scaled_dot_product_attention(
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 50, in summarize
+    text = transcribe_audio(audio_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\nandhana\DS\Course_Projects\Video_Summarization - Copy\backend\app.py", line 105, in transcribe_audio
+    raise Exception(f"Failed to transcribe audio: {e}")
+Exception: Failed to transcribe audio: Expected key.size(1) == value.size(1) to be true, but got false.  (Could this error message be improved?  If so, please report an enhancement request to PyTorch.)
+
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:21:40] "[35m[1mPOST /summarize HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:21:40] "[35m[1mPOST /summarize HTTP/1.1[0m" 500 -
+INFO:werkzeug: * Restarting with watchdog (windowsapi)
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 550-494-242
+INFO:werkzeug:127.0.0.1 - - [12/Mar/2025 19:22:31] "POST /summarize HTTP/1.1" 200 -

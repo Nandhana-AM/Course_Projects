@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Summarization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        textarea, input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #summary {
+            margin-top: 20px;
+            text-align: left;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        #loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .action-buttons {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Summarization</h1>
+    <form id="videoForm">
+        <input type="file" name="video" accept="video/*">
+        <input type="text" name="youtube_link" placeholder="Or paste a YouTube link">
+        <button type="submit">Summarize</button>
+    </form>
+    
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Summarizing your video... This may take a few moments.</p>
+    </div>
+    
+    <div id="summaryContainer">
+        <div id="summary"></div>
+        <div class="action-buttons" id="actionButtons">
+            <button id="summarizeText">Summarize this text further</button>
+            <button id="summarizeAnother">Summarize another video</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('videoForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('summary').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            try {
+                const response = await fetch('/summarize_video', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+                
+                // Display summary
+                const summaryElement = document.getElementById('summary');
+                summaryElement.innerText = result.summary || result.error;
+                summaryElement.style.display = 'block';
+                
+                // Show action buttons if we have a summary
+                if (result.summary) {
+                    document.getElementById('actionButtons').style.display = 'block';
+                }
+            } catch (error) {
+                // Hide loading indicator and show error
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('summary').innerText = "An error occurred during summarization. Please try again.";
+                document.getElementById('summary').style.display = 'block';
+            }
+        });
+        
+        // Summarize the text further
+        document.getElementById('summarizeText').addEventListener('click', async () => {
+            const text = document.getElementById('summary').innerText;
+            if (!text) return;
+            
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('actionButtons').style.display = 'none';
+            
+            const formData = new FormData();
+            formData.append('text', text);
+            
+            try {
+                const response = await fetch('/summarize_text', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+                
+                // Display summary
+                document.getElementById('summary').innerText = result.summary || result.error;
+                document.getElementById('summary').style.display = 'block';
+                document.getElementById('actionButtons').style.display = 'block';
+            } catch (error) {
+                // Hide loading indicator and show error
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('summary').innerText = "An error occurred during summarization. Please try again.";
+                document.getElementById('summary').style.display = 'block';
+                document.getElementById('actionButtons').style.display = 'block';
+            }
+        });
+        
+        // Summarize another video
+        document.getElementById('summarizeAnother').addEventListener('click', () => {
+            // Reset the form
+            document.getElementById('videoForm').reset();
+            document.getElementById('summary').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+        });
+    </script>
+</body>
+</html>

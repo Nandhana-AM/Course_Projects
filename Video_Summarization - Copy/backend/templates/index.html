@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Summarizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Video Summarizer</h1>
+    <form id="upload-form">
+        <input type="file" id="video-file" accept="video/*" />
+        <input type="text" id="youtube-link" placeholder="Paste YouTube link" />
+        <button type="submit">Summarize</button>
+        <button type="button" id="reset-btn">Reset</button>
+    </form>
+    <div id="loading">Summarizing... Please wait.</div>
+    <div id="error"></div>
+    <div id="summary"></div>
+    <script src="{{ url_for('static', filename='JS/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 50px;
+}
+
+input {
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: blue;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: darkblue;
+}
+
+#loading, #error {
+    display: none;
+    font-style: italic;
+    color: gray;
+}
+
+#error {
+    color: red;
+}
+
+#summary {
+    width: 60%;
+    margin: auto;
+    font-size: 18px;
+}

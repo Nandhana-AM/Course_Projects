@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Summarization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            max-width: 500px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #summary {
+            margin-top: 20px;
+            text-align: left;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            display: none;
+        }
+        #loading {
+            display: none;
+            margin: 20px 0;
+        }
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .action-buttons {
+            margin-top: 20px;
+            display: none;
+        }
+        .preview-container {
+            margin-top: 20px;
+            display: none;
+        }
+        #imagePreview {
+            max-width: 100%;
+            max-height: 300px;
+            margin-top: 10px;
+        }
+        .paste-area {
+            width: 100%;
+            max-width: 500px;
+            height: 100px;
+            border: 2px dashed #ccc;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px auto;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+        .paste-area:hover {
+            border-color: #aaa;
+            background-color: #f0f0f0;
+        }
+        .paste-text {
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Summarization</h1>
+    
+    <div class="paste-area" id="pasteArea">
+        <div class="paste-text">Click here or press Ctrl+V to paste an image</div>
+    </div>
+    
+    <form id="imageForm">
+        <input type="file" name="image" accept="image/*" id="imageFile">
+        <input type="text" name="image_url" placeholder="Or paste an image URL" id="imageUrl">
+        <button type="submit">Summarize</button>
+    </form>
+    
+    <div class="preview-container" id="previewContainer">
+        <h3>Image Preview</h3>
+        <img id="imagePreview" alt="Image preview">
+    </div>
+    
+    <div id="loading">
+        <div class="spinner"></div>
+        <p>Analyzing image... Please wait.</p>
+    </div>
+    
+    <div id="summaryContainer">
+        <div id="summary"></div>
+        <div class="action-buttons" id="actionButtons">
+            <button id="summarizeAnother">Summarize another image</button>
+        </div>
+    </div>
+
+    <script>
+        // Show image preview when file is selected
+        document.getElementById('imageFile').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                displayImagePreview(file);
+                document.getElementById('imageUrl').value = ''; // Clear URL field
+            }
+        });
+        
+        // Show image preview when URL is entered
+        document.getElementById('imageUrl').addEventListener('input', function(e) {
+            const url = e.target.value.trim();
+            if (url) {
+                document.getElementById('imagePreview').src = url;
+                document.getElementById('previewContainer').style.display = 'block';
+                document.getElementById('imageFile').value = ''; // Clear file input
+            } else {
+                document.getElementById('previewContainer').style.display = 'none';
+            }
+        });
+        
+        // Handle clipboard paste events
+        document.addEventListener('paste', function(e) {
+            const items = e.clipboardData.items;
+            let imageItem = null;
+            
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].type.indexOf('image') !== -1) {
+                    imageItem = items[i];
+                    break;
+                }
+            }
+            
+            if (imageItem) {
+                const blob = imageItem.getAsFile();
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    // Create a File object from the blob
+                    const fileName = 'pasted-image.png';
+                    const pastedFile = new File([blob], fileName, { type: blob.type });
+                    
+                    // Create a new FileList-like object
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(pastedFile);
+                    
+                    // Set the file input's files property
+                    document.getElementById('imageFile').files = dataTransfer.files;
+                    
+                    // Display the image
+                    displayImagePreview(blob);
+                    
+                    // Clear URL field
+                    document.getElementById('imageUrl').value = '';
+                };
+                
+                reader.readAsDataURL(blob);
+            }
+        });
+        
+        // Make the paste area focusable and handle click events
+        const pasteArea = document.getElementById('pasteArea');
+        pasteArea.tabIndex = 0; // Make it focusable
+        
+        pasteArea.addEventListener('click', function() {
+            this.focus();
+        });
+        
+        pasteArea.addEventListener('keydown', function(e) {
+            // Allow Ctrl+V by doing nothing special (let default event handling work)
+            if (e.key === 'v' && (e.ctrlKey || e.metaKey)) {
+                // Let the paste event handler above handle this
+            }
+        });
+        
+        function displayImagePreview(file) {
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                document.getElementById('imagePreview').src = event.target.result;
+                document.getElementById('previewContainer').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        document.getElementById('imageForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('imageFile');
+            const urlInput = document.getElementById('imageUrl');
+            
+            if (!fileInput.files.length && !urlInput.value.trim()) {
+                alert('Please upload an image or provide an image URL');
+                return;
+            }
+            
+            // Show loading indicator
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('summary').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            
+            const formData = new FormData(e.target);
+            try {
+                const response = await fetch('/summarize_image', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                
+                // Hide loading indicator
+                document.getElementById('loading').style.display = 'none';
+                
+                // Display summary
+                const summaryElement = document.getElementById('summary');
+                summaryElement.innerText = result.summary || result.error;
+                summaryElement.style.display = 'block';
+                
+                // Show action buttons if we have a summary
+                if (result.summary) {
+                    document.getElementById('actionButtons').style.display = 'block';
+                }
+            } catch (error) {
+                // Hide loading indicator and show error
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('summary').innerText = "An error occurred during image analysis. Please try again.";
+                document.getElementById('summary').style.display = 'block';
+            }
+        });
+        
+        // Summarize another image
+        document.getElementById('summarizeAnother').addEventListener('click', () => {
+            // Reset the form
+            document.getElementById('imageForm').reset();
+            document.getElementById('summary').style.display = 'none';
+            document.getElementById('actionButtons').style.display = 'none';
+            document.getElementById('previewContainer').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
